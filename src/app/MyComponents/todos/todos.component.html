@@ -1,11 +1,11 @@
 <div class="container mt-4">
-    <h1 class="text-center mb-3">Todo App By OLASER2A</h1>
+    <h1 class="text-center mb-3">Todo App By <span class="text-info">"OLASER2A"</span></h1>
     <h4>Add Todos</h4>
     <div class="border rounded p-2 mb-4">
         <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
     </div>
     <h4>Todos List</h4>
-    <div class="border rounded p-2 mb-4" *ngIf="this.todos.length == 0; else elseBlock">
+    <div class="border rounded p-2 mb-3" *ngIf="this.todos.length == 0; else elseBlock">
         <p>No Todos Added</p>
     </div>
     <ng-template #elseBlock>
