@@ -1,7 +1,11 @@
 <div class="card mb-4">
     <div class="card-body">
-        <h5 class="card-title">{{todo.title}}</h5>
-        <p class="card-text">{{todo.desc}}</p>
-        <a href="#" class="btn btn-danger" (click)="_onDeleteButtonPressed(todo)">Delete</a>
+        <h5 class="card-title" [ngClass]="{'strike': !todo.active}">{{todo.title}}</h5>
+        <p class="card-text" [ngClass]="{'strike': !todo.active}">{{todo.desc}}</p>
+        <div class="">
+        <div class="bd-example">
+            <button class="btn btn-danger me-1" (click)="_onDeleteButtonPressed(todo)">Delete</button>
+            <button class="btn btn-warning" (click)="_onDoneButtonPressed(todo)">{{todo.active ? 'Mark As Done' : 'Mark As Not Done'}}</button>
+        </div>
     </div>
 </div>

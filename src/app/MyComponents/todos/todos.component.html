@@ -1,13 +1,17 @@
-<h4>Add Todos</h4>
-<div class="border rounded p-2 mb-4">
-    <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
-</div>
-<h4>Todos List</h4>
-<div class="border rounded p-2 mb-4" *ngIf="this.todos.length===0; else elseBlock">
-    <p>No Todos Added</p>
-</div>
-<ng-template #elseBlock>
-    <div *ngFor="let todo of todos">
-        <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
+<div class="container mt-4">
+    <h1 class="text-center mb-3">Todo App By OLASER2A</h1>
+    <h4>Add Todos</h4>
+    <div class="border rounded p-2 mb-4">
+        <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
     </div>
-</ng-template>
+    <h4>Todos List</h4>
+    <div class="border rounded p-2 mb-4" *ngIf="this.todos.length == 0; else elseBlock">
+        <p>No Todos Added</p>
+    </div>
+    <ng-template #elseBlock>
+        <div *ngFor="let todo of todos">
+            <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)" (todoDone)="doneTodo($event)">
+            </app-todo-item>
+        </div>
+    </ng-template>
+</div>

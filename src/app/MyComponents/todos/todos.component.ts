@@ -7,10 +7,17 @@ import { Todo } from '../../Todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  msg = 'todos work!';
+  localItem!: string;
   todos:Todo[];
   constructor() {
-    this.todos = []
+    this.localItem = localStorage.getItem('todos')!;
+    console.log(this.localItem)
+    // this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){
+      this.todos = [];
+    } else {
+      this.todos = JSON.parse(this.localItem);
+    }
   }
 
   ngOnInit(): void {
@@ -20,10 +27,19 @@ export class TodosComponent implements OnInit {
     console.log(todo);
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
+    localStorage.setItem("todos", JSON.stringify(this.todos))
   }
   addTodo(todo : Todo){
     console.log("The Todo That should be added:");
     console.log(todo);
     this.todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(this.todos))
+  }
+  doneTodo(todo : Todo){
+    console.log("The Todo That should be toggled:");
+    console.log(todo);
+    const index = this.todos.indexOf(todo);
+    this.todos[index].active = !this.todos[index].active;
+    localStorage.setItem("todos", JSON.stringify(this.todos))
   }
 }
